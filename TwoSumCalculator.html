@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Sum Calculator</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="h-screen flex items-center justify-center bg-gray-100">
+    <div class="bg-white p-8 rounded shadow-md">
+        <h2 class="text-2xl font-bold mb-4">Two Sum Calculator</h2>
+        <div class="flex flex-col mb-4">
+            <label class="mb-2" for="num1">Number 1:</label>
+            <input id="num1" type="number" class="p-2 border border-gray-400 rounded">
+        </div>
+        <div class="flex flex-col mb-4">
+            <label class="mb-2" for="num2">Number 2:</label>
+            <input id="num2" type="number" class="p-2 border border-gray-400 rounded">
+        </div>
+        <button id="calculate" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Calculate</button>
+        <div id="result" class="mt-4 text-lg font-bold"></div>
+        <div id="modal" class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex items-center justify-center">
+            <div class="bg-white p-8 rounded shadow-md">
+                <h2 id="modal-text" class="text-2xl font-bold mb-4"></h2>
+                <button id="close-modal" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const num1Input = document.getElementById('num1');
+        const num2Input = document.getElementById('num2');
+        const calculateButton = document.getElementById('calculate');
+        const resultDiv = document.getElementById('result');
+        const modal = document.getElementById('modal');
+        const modalText = document.getElementById('modal-text');
+        const closeModalButton = document.getElementById('close-modal');
+
+        calculateButton.addEventListener('click', () => {
+            const num1 = parseFloat(num1Input.value);
+            const num2 = parseFloat(num2Input.value);
+
+            if (isNaN(num1) || isNaN(num2)) {
+                modalText.textContent = 'Please enter valid numbers';
+                modal.classList.remove('hidden');
+                return;
+            }
+
+            const sum = num1 + num2;
+            resultDiv.textContent = `The sum is: ${sum}`;
+        });
+
+        closeModalButton.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+    </script>
+</body>
+</html>
